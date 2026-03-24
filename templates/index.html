@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+<title>Calculadora IMC</title>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+
+<style>
+
+body{
+font-family:Arial;
+background:linear-gradient(135deg,#667eea,#764ba2);
+display:flex;
+justify-content:center;
+align-items:center;
+height:100vh;
+}
+
+.card{
+background:white;
+padding:30px;
+border-radius:15px;
+width:350px;
+box-shadow:0 10px 25px rgba(0,0,0,0.2);
+}
+
+h2{
+text-align:center;
+}
+
+input{
+width:100%;
+padding:10px;
+margin:5px 0;
+border-radius:8px;
+border:1px solid #ccc;
+}
+
+button{
+width:100%;
+padding:12px;
+background:#667eea;
+border:none;
+color:white;
+font-weight:bold;
+border-radius:10px;
+cursor:pointer;
+}
+
+button:hover{
+background:#5a67d8;
+}
+
+.barra{
+background:#eee;
+height:20px;
+border-radius:10px;
+margin-top:10px;
+overflow:hidden;
+}
+
+.progreso{
+height:100%;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="card">
+
+<h2>Entrevista IMC</h2>
+
+<form method="POST">
+
+<input name="nombre" placeholder="Nombre" required>
+
+<label>Fecha de nacimiento</label>
+<input type="text" id="fecha" name="fecha" placeholder="DD/MM/YYYY" required>
+
+<input name="pais" placeholder="País" required>
+
+<input name="peso" placeholder="Peso (kg)" required>
+
+<input name="altura" placeholder="Altura (m)" required>
+
+<button>Calcular</button>
+
+</form>
+
+{% if resultado %}
+
+<h3>{{resultado}}</h3>
+
+<p>{{mensaje_imc}}</p>
+
+<p>Edad: {{edad}}</p>
+
+<p>Signo: {{signo}}</p>
+
+<p>{{mensaje_pais}}</p>
+
+<p>Fecha actual: {{fecha}}</p>
+
+<div class="barra">
+
+<div class="progreso" style="width:{{porcentaje}}%; background:{{color}};"></div>
+
+</div>
+
+{% endif %}
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+
+<script>
+
+flatpickr("#fecha",{
+dateFormat:"d/m/Y",
+locale:"es"
+})
+
+</script>
+
+</body>
+
+</html>
