@@ -1,7 +1,9 @@
 <!DOCTYPE html>
-<html>
+<html lang="es">
 
 <head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>Calculadora IMC</title>
 
@@ -9,50 +11,77 @@
 
 <style>
 
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+}
+
 body{
 font-family:Arial;
 background:linear-gradient(135deg,#667eea,#764ba2);
 display:flex;
 justify-content:center;
 align-items:center;
-height:100vh;
+min-height:100vh;
+padding:20px;
 }
 
+/* CONTENEDOR */
 .card{
 background:white;
-padding:30px;
+padding:25px;
 border-radius:15px;
-width:350px;
+width:100%;
+max-width:400px;
 box-shadow:0 10px 25px rgba(0,0,0,0.2);
 }
 
+/* TITULO */
 h2{
 text-align:center;
+margin-bottom:15px;
 }
 
+/* INPUTS */
 input{
 width:100%;
-padding:10px;
-margin:5px 0;
-border-radius:8px;
+padding:12px;
+margin:6px 0;
+border-radius:10px;
 border:1px solid #ccc;
+font-size:14px;
 }
 
+/* BOTON */
 button{
 width:100%;
-padding:12px;
+padding:14px;
 background:#667eea;
 border:none;
 color:white;
 font-weight:bold;
 border-radius:10px;
 cursor:pointer;
+font-size:16px;
+margin-top:10px;
 }
 
 button:hover{
 background:#5a67d8;
 }
 
+/* RESULTADOS */
+.resultado{
+margin-top:15px;
+text-align:center;
+}
+
+.resultado p{
+margin:5px 0;
+}
+
+/* BARRA */
 .barra{
 background:#eee;
 height:20px;
@@ -63,6 +92,31 @@ overflow:hidden;
 
 .progreso{
 height:100%;
+transition:0.5s;
+}
+
+/* 📱 RESPONSIVE */
+@media (max-width: 480px){
+
+.card{
+padding:20px;
+border-radius:12px;
+}
+
+h2{
+font-size:20px;
+}
+
+input{
+padding:10px;
+font-size:13px;
+}
+
+button{
+padding:12px;
+font-size:14px;
+}
+
 }
 
 </style>
@@ -94,21 +148,19 @@ height:100%;
 
 {% if resultado %}
 
+<div class="resultado">
+
 <h3>{{resultado}}</h3>
 
 <p>{{mensaje_imc}}</p>
-
-<p>Edad: {{edad}}</p>
-
-<p>Signo: {{signo}}</p>
-
+<p><b>Edad:</b> {{edad}}</p>
+<p><b>Signo:</b> {{signo}}</p>
 <p>{{mensaje_pais}}</p>
-
-<p>Fecha actual: {{fecha}}</p>
+<p><b>Fecha actual:</b> {{fecha}}</p>
 
 <div class="barra">
-
 <div class="progreso" style="width:{{porcentaje}}%; background:{{color}};"></div>
+</div>
 
 </div>
 
@@ -119,14 +171,11 @@ height:100%;
 <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
 
 <script>
-
 flatpickr("#fecha",{
 dateFormat:"d/m/Y",
 locale:"es"
 })
-
 </script>
 
 </body>
-
 </html>
